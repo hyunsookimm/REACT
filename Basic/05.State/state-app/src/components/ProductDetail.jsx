@@ -80,7 +80,7 @@ const ProductDetail = () => {
               {total.toLocaleString()} 원
             </span>
           </div>
-        </div> 
+        </div>
         <div className="text-group flex gap-1">
           <div className="item">
             <button className="btn btn-lg">구매하기</button>

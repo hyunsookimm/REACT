@@ -9,11 +9,11 @@ const Footer = () => {
 }
 
 const styles = {
-    footer : {
-        padding : "20px",
-        backgroundColor : "#eee",
-        marginTop : "100px",
-    }
+  footer: {
+    padding : "20px",
+    backgroundColor : "#eee",
+    marginTop : "100px"
+  }
 }
 
 export default Footer

@@ -5,7 +5,7 @@ class LifecycleClass extends Component {
     super(props);
     console.log('constructor: 컴포넌트가 생성 중입니다.');
     
-    // 초기화
+    // 🧊 state 초기화
     this.state = {
       data: null,
     };

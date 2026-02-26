@@ -2,11 +2,11 @@
 import React from 'react'
 import { useState } from 'react'
 
-// props => { product } 객체 구조 분해 할당
+// 🎁 props ➡ { product } ⚡ 객체 구조 분해 할당
 // const ProductDetail = (props) => {
-const ProductDetail = ( {product} ) => {
+const ProductDetail = ( { product } ) => {
 
-  // => App.jsx 로 이동
+  // ➡App.jsx 로 이동
   // const product = props.product
 
   // 🧊 state 선언
@@ -39,7 +39,7 @@ const ProductDetail = ( {product} ) => {
         </div>
         <p>
           <span className='txt-pt'>INFO</span> <br />
-          - 세로로 볼 수 있는 독특한 모니터 디자인 <br />
+          - 세로로 볼 수 있는 독트한 모니터 디자인 <br />
           - 상단, 하단을 분리하여 멀티태스킹이 가능 <br />
         </p>
         <p>
@@ -76,7 +76,7 @@ const ProductDetail = ( {product} ) => {
               {total.toLocaleString()} 원
             </span>
           </div>
-        </div> 
+        </div>
         <div className="text-group flex gap-1">
           <div className="item">
             <button className="btn btn-lg">구매하기</button>

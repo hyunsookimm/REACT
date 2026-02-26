@@ -10,18 +10,19 @@ import Login from './pages/Login'
 import Admin from './pages/Admin'
 
 function App() {
+  // 🧊 state
   const [isLogin, setIsLogin] = useState(true)
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={ <Home /> } /> 
+        <Route path='/' element={ <Home /> } />
         <Route path='/about' element={ <About /> } />
         <Route path='/boards/:id' element={ <Board /> } />
         <Route path='/login' element={ <Login /> } />
-        <Route
-         path='/admin'
-         element={ isLogin ? <Admin /> : <Navigate to="/login" /> } />
+        <Route 
+          path='/admin' 
+          element={ isLogin ? <Admin /> : <Navigate to="/login" /> } />
       </Routes>
     </BrowserRouter>
   )

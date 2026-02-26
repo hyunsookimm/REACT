@@ -4,31 +4,31 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 // 클래스형 컴포넌트
-// rcc
+// ✨ rcc
 import React, { Component } from 'react'
 
 class App extends Component {
   render() {
     // React 엘리먼트 생성
-    // 1. React JavaScript 로 엘리먼트 생성
+    // 1️⃣ React JavaScript 로 엘리먼트 생성
     const link = React.createElement('a', {
-      href: 'http://google.com',
+      href: 'http://www.google.com',
       target: '_blank',
       style: { color : 'blue' }
     }, '구글 사이트 바로 가기')
 
     const box = React.createElement('div', {
-      className: 'box',
+      className: 'box'
     }, 'Box')
 
-    const element = React.createElement('div' , null,
+    const element = React.createElement('div', null,
       React.createElement('h1', null, 'Hello Element'),
       React.createElement('p', null, 'This is an Element'),
       link,
       box
     )
 
-    // 2. JSX 로 엘리먼트 생성
+    // 2️⃣ JSX 로 엘리먼트 생성
     const element2 = (
       <div>
         <h1>Hello Element</h1>
@@ -36,7 +36,7 @@ class App extends Component {
         <a href="http://www.google.com"
           target='_blank'
           style={ {color: 'red'} }>구글 사이트 바로 가기</a>
-          <div className='box'>Box</div>
+        <div className='box'>Box</div>
       </div>
     )
 

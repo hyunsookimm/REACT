@@ -6,7 +6,6 @@ import ClassComponent from './components/ClassComponent'
 import FunctionComponent from './components/FunctionComponent'
 
 function App() {
-
   return (
     <>
       <ClassComponent />
