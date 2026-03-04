@@ -1,3 +1,4 @@
+-- Active: 1769407808565@@127.0.0.1@3306@aloha
 DROP TABLE IF EXISTS `files`;
 CREATE TABLE `files` (
   `no` BIGINT NOT NULL AUTO_INCREMENT,             -- 파일 번호 (자동증가)
@@ -13,3 +14,25 @@ CREATE TABLE `files` (
   `seq` BIGINT NULL DEFAULT 0,                  -- 순서
   PRIMARY KEY (`no`)                            -- PK 설정
 ) COMMENT='파일';
+
+-- 샘플 데이터
+-- no:100 번 글의 첨부파일
+-- 메인파일
+INSERT INTO `files` ( id, p_id, file_name, origin_name, file_path, file_size, type )
+VALUES ( 
+  UUID(), 
+  (SELECT id FROM boards WHERE no = 100),
+  'TEST_100_썸네일.png',
+  '썸네일.png',
+  'C:/upload/TEST_100_썸네일.png',
+  200*1000,
+  'MAIN'
+);
+-- 첨부파일 4개
+INSERT INTO `files` ( id, p_id, file_name, origin_name, file_path, file_size, type )
+VALUES 
+  (UUID(), (SELECT id FROM boards WHERE no = 100), 'TEST_100_파일1.png','파일1.png','C:/upload/TEST_100_파일1.png',200*1000,'SUB'),
+  (UUID(), (SELECT id FROM boards WHERE no = 100), 'TEST_100_파일2.png','파일2.png','C:/upload/TEST_100_파일2.png',200*1000,'SUB'),
+  (UUID(), (SELECT id FROM boards WHERE no = 100), 'TEST_100_파일3.png','파일3.png','C:/upload/TEST_100_파일3.png',200*1000,'SUB'),
+  (UUID(), (SELECT id FROM boards WHERE no = 100), 'TEST_100_파일4.png','파일4.png','C:/upload/TEST_100_파일4.png',200*1000,'SUB')
+;

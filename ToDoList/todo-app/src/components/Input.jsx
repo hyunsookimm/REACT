@@ -10,7 +10,7 @@ const Input = ({ input, onChange, onSubmit }) => {
           value={input}
           onChange={onChange}
           />
-        <button type='submit'className='btn'>
+        <button type='submit' className='btn'>
           추가
         </button>
       </form>

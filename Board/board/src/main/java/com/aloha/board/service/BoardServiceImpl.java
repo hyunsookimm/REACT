@@ -55,11 +55,11 @@ public class BoardServiceImpl implements BoardService {
   public int upload(Boards board) {
     int result = 0;
     String pId = board.getId();
-    
+
     List<Files> uploadFileList = new ArrayList<>();
 
     MultipartFile mainFile = board.getMainFile();
-    if ( mainFile != null && !mainFile.isEmpty() ) {
+    if( mainFile != null && !mainFile.isEmpty() ) {
       Files mainFileInfo = new Files();
       mainFileInfo.setPId(pId);
       mainFileInfo.setData(mainFile);
@@ -68,14 +68,14 @@ public class BoardServiceImpl implements BoardService {
     }
 
     List<MultipartFile> files = board.getFiles();
-    if ( files != null && !files.isEmpty() ) {
+    if( files != null && !files.isEmpty() ) {
       for (MultipartFile multipartFile : files) {
-        if (multipartFile.isEmpty() ) {
+        if( multipartFile.isEmpty() ) {
           continue;
         }
         Files fileInfo = new Files();
         fileInfo.setPId(pId);
-        fileInfo.setData(mainFile);
+        fileInfo.setData(multipartFile);
         fileInfo.setType("SUB");
         uploadFileList.add(fileInfo);
       }
@@ -93,7 +93,7 @@ public class BoardServiceImpl implements BoardService {
   public boolean update(Boards entity) {
     // 파일 업로드용 id 조회
     Boards oldBoard = boardMapper.select(entity.getNo());
-    if ( oldBoard != null ) {
+    if( oldBoard != null ) {
       entity.setId(oldBoard.getId());
     }
     // 게시글 수정
@@ -121,7 +121,7 @@ public class BoardServiceImpl implements BoardService {
     Files file = new Files();
     file.setPId(board.getId());
     int deleteCount = fileService.deleteByParent(file);
-    log.info(deleteCount + "개의 파일이 삭제되었습니다.");
+    log.info(deleteCount + " 개의 파일이 삭제되었습니다.");
     return result > 0;  
   }
   
@@ -133,7 +133,7 @@ public class BoardServiceImpl implements BoardService {
     Files file = new Files();
     file.setPId(id);
     int deleteCount = fileService.deleteByParent(file);
-    log.info(deleteCount + "개의 파일이 삭제되었습니다.");
+    log.info(deleteCount + " 개의 파일이 삭제되었습니다.");
     return result > 0;  
   }
 

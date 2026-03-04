@@ -66,15 +66,15 @@
     DELETE FROM boards WHERE id = #{id}
   </delete>
 
-  <select id="selectMainFile" resultType="Files">
-    SELECT * FROM files
-    WHERE p_id #{id} AND type ='MAIN'
+  <select id="selectMainFile" resultType="Files"> 
+    SELECT * FROM files 
+    WHERE p_id = #{id} AND type ='MAIN' 
     LIMIT 0, 1
   </select>
 
-  <select id="fileList" resultType="Files">
-    SELECT * FROM files
-    WHERE p_id #{id} AND type ='SUB'
+  <select id="fileList" resultType="Files"> 
+    SELECT * FROM files 
+    WHERE p_id = #{id} AND type = 'SUB'
   </select>
-
+  
 </mapper>

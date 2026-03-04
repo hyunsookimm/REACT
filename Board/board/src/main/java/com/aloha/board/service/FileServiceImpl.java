@@ -31,10 +31,12 @@ import lombok.extern.slf4j.Slf4j;
 public class FileServiceImpl implements FileService {
 
   private final FileMapper fileMapper;
-  private final ResourceLoader resourceLoader;   // 자원을 가져오는 객체 
+  private final ResourceLoader resourceLoader;  // 자원을 가져오는 객체
 
-  @Value("${upload.path")
+  @Value("${upload.path}")
   private String uploadPath;   // 업로드 경로
+
+
 
   @Override
   public List<Files> list() {
@@ -281,7 +283,8 @@ public class FileServiceImpl implements FileService {
     String filePath = file != null ? file.getFilePath() : null;
 
     File imgFile;
-    // 파일 경로가 null 또는 파일이 존재하지 않는 경우 -> no-image
+    // 파일 경로가 null 또는 파일이 존재하지 않는 경우 ➡ no-image
+    // org.springframework.core.io.Resource
     Resource resource = resourceLoader.getResource("classpath:static/img/no-image.png");
     if( filePath == null || !(imgFile = new File(filePath)).exists() ) {
       // no-image.png (기본 이미지) 적용
@@ -289,10 +292,10 @@ public class FileServiceImpl implements FileService {
       filePath = imgFile.getPath();
     }
 
-    // 확장자
+    // 확장자 
     // C:/upload/2026.02.06-강아지.png
     String ext = filePath.substring(filePath.lastIndexOf(".") + 1);
-    String mimeType = MimeTypeUtils.parseMimeType("iamge/" + ext).toString();
+    String mimeType = MimeTypeUtils.parseMimeType("image/" + ext).toString();
     MediaType mType = MediaType.valueOf(mimeType);
 
     if( mType == null ) {
@@ -304,9 +307,11 @@ public class FileServiceImpl implements FileService {
       response.setContentType(mType.toString());
     }
 
-    FileInputStream fis = new FileInputStream(imgFile);       // 파일 입력
-    ServletOutputStream sos = response.getOutputStream();     // 파일 출력
-    int result = FileCopyUtils.copy(fis, sos);                // 파일 복사(전송)
+    FileInputStream fis = new FileInputStream(imgFile);     // 파일 입력
+    ServletOutputStream sos = response.getOutputStream();   // 파일 출력
+    int result = FileCopyUtils.copy(fis, sos);              // 파일 전송
     return result > 0;
   }
+
+  
 }

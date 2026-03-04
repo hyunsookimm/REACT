@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -17,14 +19,16 @@ public class Boards {
   private String content;
   private Date createdAt;
   private Date updatedAt;
- 
+
   // 파일
+  @JsonIgnore           // 객체 -> JSON 직렬화 제외
   private MultipartFile mainFile;
+  @JsonIgnore           // 객체 -> JSON 직렬화 제외
   private List<MultipartFile> files;
 
-  // 파일 정보 
-  private Files file;             // 메인 파일 1:1
-  private List<Files> fileList;   // 첨부 파일 1:N
+  // 파일정보
+  private Files file;               // 메인 파일 1:1
+  private List<Files> fileList;     // 첨부 파일 1:N
 
   public Boards() {
     this.id = UUID.randomUUID().toString();
