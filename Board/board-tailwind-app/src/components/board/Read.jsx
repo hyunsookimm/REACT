@@ -69,7 +69,7 @@ const Read = () => {
         </Link>
 
         <Link
-          to="/boards/update/:id"
+          to={`/boards/update/${id}`}
           className='inline-flex items-center gap-1.5 px-5 py-2 text-sm font-medium text-white bg-blue-500
                       rounded-lg hover:bg-blue-600 transition-colors'     
         >

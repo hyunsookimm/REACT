@@ -6,6 +6,25 @@ import { useNavigate } from 'react-router-dom'
 import { useBoardMutations } from '../../hooks/useBoardMutations'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
+import { filesApi } from '../../apis/files'
+
+// CkEditor 이미지 업로드 플러그인
+function uploadAdapterPlugin(editor) {
+  editor.plugins.get('FileRepository').createUploadAdapter = (loader) => ({
+    upload: async () => {
+      const file = await loader.file
+      const formData = new FormData()
+      formData.append('pId', '')
+      formData.append('type','SUB')
+      formData.append('data', file)
+      const res = 
+        await filesApi.upload(formData, {'Content-Type' : 'multipart/form-data'})
+      return { default: `/api/files/img/${res.data.id}`}
+    },
+    abort: () => {},
+  })
+}
+
 
 const Insert = () => {
   const navigate = useNavigate()
@@ -127,6 +146,7 @@ const Insert = () => {
           <CKEditor 
             editor={ClassicEditor}
             config={{
+              extraPlugins: [uploadAdapterPlugin],
               toolbar: [
                 'undo', 'redo', '|',
                 'heading', '|',

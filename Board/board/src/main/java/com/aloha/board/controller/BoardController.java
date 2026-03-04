@@ -155,7 +155,7 @@ public class BoardController {
   }
   
   @PutMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> updateJSON(Boards board) {
+  public ResponseEntity<?> updateJSON(@RequestBody Boards board) {
     try {
       boolean result = boardService.updateById(board);
       if( result )
