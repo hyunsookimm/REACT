@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { ImageIcon, X } from 'lucide-react'
-import { useNavigate } from 'react-router-dom' 
+import { useNavigate } from 'react-router-dom'
 import { useBoardMutations } from '../../hooks/useBoardMutations'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
@@ -15,13 +15,13 @@ function uploadAdapterPlugin(editor) {
       const file = await loader.file
       const formData = new FormData()
       formData.append('pId', '')
-      formData.append('type','SUB')
+      formData.append('type', 'SUB')
       formData.append('data', file)
-      const res = 
-        await filesApi.upload(formData, {'Content-Type' : 'multipart/form-data'})
-      return { default: `/api/files/img/${res.data.id}`}
+      const res =
+        await filesApi.upload(formData, { 'Content-Type': 'multipart/form-data' })
+      return { default: `/api/files/img/${res.data.id}` }
     },
-    abort: () => {},
+    abort: () => { },
   })
 }
 
@@ -50,9 +50,9 @@ const Insert = () => {
     formData.append('content', contentRef.current)
 
     // 메인 파일
-    if( mainFile ) formData.append('mainFile', mainFile)
+    if (mainFile) formData.append('mainFile', mainFile)
     // 첨부 파일
-    if( data.files?.length ) {
+    if (data.files?.length) {
       Array.from(data.files).forEach((f) => formData.append('files', f))
     }
 
@@ -74,7 +74,7 @@ const Insert = () => {
   const clearMainFile = () => {
     setMainFile(null)
     setPreview(null)
-    if( fileInputRef.current ) fileInputRef.current.value = ''
+    if (fileInputRef.current) fileInputRef.current.value = ''
   }
 
   // 드래그 이벤트
@@ -84,7 +84,7 @@ const Insert = () => {
     e.preventDefault()
     setIsDragging(false)
     const file = e.dataTransfer.files[0]
-    if( file ) handleMainFile(file)
+    if (file) handleMainFile(file)
   }
 
 
@@ -92,7 +92,7 @@ const Insert = () => {
     `w-full px-3 py-2 text-sm border border-gray-200 rounded outline-none 
     focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition bg-white
     `
-    
+
   return (
     <form noValidate onSubmit={handleSubmit(onSubmit)}>
       <div className="flex items-center justify-center mb-5">
@@ -128,7 +128,7 @@ const Insert = () => {
             <input
               placeholder='작성자를 입력해주세요'
               className={inputClass}
-              {...register('writer', { required: '작성자를 입력해주세요.'} )}
+              {...register('writer', { required: '작성자를 입력해주세요.' })}
             />
             {
               errors.writer && (
@@ -143,7 +143,7 @@ const Insert = () => {
           <label className="block text-sm font-medium text-gray-600 mb-2">
             내용
           </label>
-          <CKEditor 
+          <CKEditor
             editor={ClassicEditor}
             config={{
               extraPlugins: [uploadAdapterPlugin],
@@ -167,28 +167,28 @@ const Insert = () => {
           <label className='w-20 flex-shrink-0 text-sm font-medium text-gray-600 pt-2'>
             메인 파일
           </label>
-         <div className="flex-1">
-              {
-                preview ? (
-                  /* 미리보기 */
-                  <div className="relative inline-block">
-                    <img
-                      src={preview}
-                      alt="미리보기"
-                      className="w-48 h-32 object-cover rounded-lg border border-gray-200"
-                    />
-                    <button
-                      type="button"
-                      onClick={clearMainFile}
-                      aria-label="이미지 삭제"
-                      className="absolute -top-2 -right-2 w-5 h-5 bg-gray-700 text-white
+          <div className="flex-1">
+            {
+              preview ? (
+                /* 미리보기 */
+                <div className="relative inline-block">
+                  <img
+                    src={preview}
+                    alt="미리보기"
+                    className="w-48 h-32 object-cover rounded-lg border border-gray-200"
+                  />
+                  <button
+                    type="button"
+                    onClick={clearMainFile}
+                    aria-label="이미지 삭제"
+                    className="absolute -top-2 -right-2 w-5 h-5 bg-gray-700 text-white
                       flex items-center justify-center hover:bg-gray-900 transition-colors"
-                    >
-                      <X size={11} />
-                    </button>
-                  </div>
-                ) : (
-                  /* 드래그앤드랍 존 */
+                  >
+                    <X size={11} />
+                  </button>
+                </div>
+              ) : (
+                /* 드래그앤드랍 존 */
                 <div
                   onDragOver={handleDragOver}
                   onDragLeave={handleDragLeave}
@@ -203,7 +203,7 @@ const Insert = () => {
                     JPG, PNG, GIF, WEBP
                   </span>
                 </div>
-                )
+              )
             }
             {/* 파일 입력 */}
             <input ref={fileInputRef} type="file" accept='image/*' className='hidden' onChange={(e) => handleMainFile(e.target.files?.[0])} />
@@ -220,7 +220,7 @@ const Insert = () => {
             className='flex-1 text-sm text-gray-600 file:mr-3 file:py-1.5 file:rounded-md
               file:border-0 file:text-xs file:font-medium file:bg-gray-100 file:text-gray-600
               hover:file:bg-gray-200 cursor-pointer
-            ' 
+            '
           />
         </div>
       </div>
@@ -231,16 +231,17 @@ const Insert = () => {
           type='button'
           className='px-4 py-2 w-full text-sm font-medium text-gray-700 bg-white border border-gray-200
             rounded-lg hover:bg-gray-50 transition-colors cursor-pointer'
-          >
-            취소
+          onClick={() => navigate('/boards')}
+        >
+          취소
         </button>
         <button
           type='submit'
           disabled={isInserting}
           className='px-4 py-2 w-full text-sm font-medium text-white bg-blue-500
             rounded-lg hover:bg-blue-600 transition-colors cursor-pointer'
-          >
-            { isInserting ? '저장 중...' : '저장' }
+        >
+          {isInserting ? '저장 중...' : '저장'}
         </button>
       </div>
     </form>
