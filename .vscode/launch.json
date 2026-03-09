@@ -19,6 +19,16 @@
             "projectName": "board",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DemoApplication<login>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.aloha.login.DemoApplication",
+            "projectName": "login",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }

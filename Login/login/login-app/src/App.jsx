@@ -1,12 +1,14 @@
-import About from './pages/About'
-import Admin from './pages/Admin'
-import Home from './pages/Home'
-import Join from './pages/Join'
-import Login from './pages/Login'
-import User from './pages/User'
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-
+import Home from './pages/Home'
+import Login from './pages/Login'
+import Join from './pages/Join'
+import User from './pages/User'
+import About from './pages/About'
+import Admin from './pages/Admin'
 
 function App() {
 

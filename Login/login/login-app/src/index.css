@@ -8,6 +8,7 @@ ul { list-style-type: none; }
 a { text-decoration: none; color: black; }
 button { cursor: pointer; }
 .link { background-color: transparent; color: black; border: none; font-size: var(--font-size-main); }
+
 :root {
   --font-size-main : 20px;
 }
